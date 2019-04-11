@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                word-break: break-all;
+            }
+            #detail {
+                width: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 id="status">Loading...</h1>
+            <div id="detail"></div>
+
+            <form id="form">
+                <input type="number" maxlength=6 id="code" />
+                <input type="submit" />
+            </form>
+        </div>
+
+        <script>
+            document.getElementById("form").style.display = "none";
+
+            const { ipcRenderer } = require('electron');
+            ipcRenderer.on('status', (event, arg) => {
+              document.getElementById("status").innerHTML = arg;
+            })
+            ipcRenderer.on('detail', (event, arg) => {
+              document.getElementById("detail").innerHTML = arg;
+            })
+
+            ipcRenderer.on('showform', (event, arg) => {
+              document.getElementById("form").style.display = arg;
+            })
+
+            document.getElementById("form").onsubmit = function() {
+                code = document.getElementById("code").value;
+                ipcRenderer.send('code', code);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            div {
+                width: 400px;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>myGov TOTP enroller</h1>
+
+            This tool will get you a TOTP key (as a QR code) for logging in to myGov.
+            <p>
+
+            You then need to use your TOTP authenticator to log in, every time, unless you disable it after logging in.
+            <p>
+
+            After you log in to myGov, you will be shown the QR code.
+            You need to enroll this in your authenticator app - or maybe more than one, if you want a backup.
+            Then, enter the current generated code to activate it.
+            <p>
+
+            The TOTP access method will not be activated unless you enter a correct key.
+            This also means you won't be locked out if something goes wrong in the process.
+            <p>
+
+            To get started, just click the button.
+
+            <form action="https://auth.my.gov.au/mga/sps/oauth/oauth20/authorize" method="get">
+                <input type="hidden" name="response_type" value="code" />
+                <input type="hidden" name="state" value="63065293C60AD6A479B67F1DFC79BBC75DEF04C3" />
+                <input type="hidden" name="client_id" value="g2c2pjLUThOaBumECqbf" />
+                <input type="hidden" name="scope" value="totp" />
+                <input type="hidden" name="redirect_uri" value="au.gov.my://app" />
+                Phone name shown in myGov: <input type="text" name="device_name" value="SM-N950F" /><br>
+                Phone type shown in myGov: <input type="text" name="device_type" value="samsung SM-N950F" /><br>
+                <input type="submit" />
+            </form>
+        </div>
+    </body>
+</html>
