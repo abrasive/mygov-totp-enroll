@@ -18,3 +18,10 @@ as the myGov OAuth endpoint insists on returning you to <au.gov.my://app>,
 which is pretty reasonable for them from a security point of view and
 atrocious for us from a reasonable software point of view.
 So sorry for the bloat, but there you go.
+
+# Instructions for use
+
+1. `npm install`
+2. `npm start`
+3. pray
+4. follow the instructions
