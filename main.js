@@ -3,7 +3,6 @@ const url = require('url');
 const request = require('request');
 const qrcode = require('qrcode');
 const { base32, base64 } = require('rfc4648');
-const prompt = require('electron-prompt');
 
 let win
 let client_id='g2c2pjLUThOaBumECqbf'
