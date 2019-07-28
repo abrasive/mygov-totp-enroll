@@ -1,4 +1,4 @@
-const { app, protocol, BrowserWindow, ipcMain } = require('electron');
+const { app, protocol, BrowserWindow, ipcMain, dialog } = require('electron');
 const url = require('url');
 const request = require('request');
 const qrcode = require('qrcode');
@@ -130,12 +130,25 @@ function requestToken(code) {
 
 function createWindow () {
     protocol.registerFileProtocol('au.gov.my', (req, callback) => {
-        protocol.unregisterProtocol('au.gov.my');   // otherwise background requests can trigger this again!
+        console.log(req.url)
+        query = url.parse(req.url, true).query
+        if ("code" in query) {
+            callback({ path: `${__dirname}/ui.html` })
 
-        code = url.parse(req.url, true).query.code
-        callback({ path: `${__dirname}/ui.html` })
+            requestToken(query.code)
+        } else {
+            if ("error_code" in query) {
+                console.log("set error")
+                callback({ path: `${__dirname}/instructions.html` })
 
-        requestToken(code)
+                dialog.showMessageBox({
+                            "type": "error",
+                            "title": "myGov error",
+                            "message": "myGov error: " + query.error_code,
+                            "buttons": ["OK"],
+                        })
+            }
+        }
     }, (error) => {
         if (error) console.error('Failed to register protocol')
     })
