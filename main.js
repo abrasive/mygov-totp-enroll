@@ -43,6 +43,7 @@ function verifyCode(code) {
     request(options, function (error, response, body) {
         if (error) {
             setError("Code verification failed, try again", error);
+            console.log("error: " + error)
             return;
         }
         if (body == null) {    // lol
@@ -51,7 +52,19 @@ function verifyCode(code) {
             return;
         } else if (body.error) {
             setError("Code verification failed, try again", body.error + ' - ' + body.error_description);
+            console.log("body error: " + body.error)
             return;
+        } else {
+            console.log("body?? " + body)
+            console.dir(body)
+            msg = "myGov error: " + body.info[0].code + " " + body.info[0].message
+            msg += "\n Make sure you're using an OTP tool that supports SHA1 keys!"
+            dialog.showMessageBox({
+                        "type": "error",
+                        "title": "myGov error",
+                        "message": msg,
+                        "buttons": ["OK"],
+                    })
         }
     });
 }
