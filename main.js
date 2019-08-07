@@ -47,7 +47,7 @@ function verifyCode(code) {
             return;
         }
         if (body == null) {    // lol
-            setStatus("Enrollment complete! DON'T LOSE THE CODE");
+            setStatus("Enrolment complete! DON'T LOSE THE CODE");
             showCodeForm(false);
             return;
         } else if (body.error) {
