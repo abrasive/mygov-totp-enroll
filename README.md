@@ -25,3 +25,8 @@ So sorry for the bloat, but there you go.
 2. `npm start`
 3. pray
 4. follow the instructions
+
+# Or if you have docker installed
+
+1. `docker build -t mygov .`
+2. `docker run -e DISPLAY --net=host -it mygov npm start`
