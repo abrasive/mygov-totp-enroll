@@ -21,12 +21,18 @@ So sorry for the bloat, but there you go.
 
 # Instructions for use
 
-1. `npm install`
-2. `npm start`
-3. pray
-4. follow the instructions
+Prerequisite: 
+npm
 
-# Or if you have docker installed
+**Windows**
+
+1. Download the repository and unzip onto the desktop.
+2. Open a new Command Prompt window and navigate to the unzipped folder e.g  ![image](https://user-images.githubusercontent.com/24822223/125901263-a2368895-c0e4-4100-ac70-3ffea6772dbd.png)
+3. `npm install`
+4. `npm start`
+5. follow the instructions in the screen that opens
+
+**Docker**
 
 1. `docker build -t mygov .`
 2. `docker run -e DISPLAY --net=host -it mygov npm start`
