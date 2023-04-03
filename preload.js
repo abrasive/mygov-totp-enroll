@@ -1,3 +1,6 @@
+// This preload script is courtesy of a helpful StackOverflow contributor
+// https://stackoverflow.com/questions/44391448/electron-require-is-not-defined/59888788#59888788
+
 const {
     contextBridge,
     ipcRenderer
