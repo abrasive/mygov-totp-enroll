@@ -3,6 +3,7 @@ const url = require('url');
 const request = require('request');
 const qrcode = require('qrcode');
 const { base32, base64 } = require('rfc4648');
+const path = require("node:path");
 
 let win
 let client_id='g2c2pjLUThOaBumECqbf'
@@ -166,9 +167,18 @@ function createWindow () {
         if (error) console.error('Failed to register protocol')
     })
 
-    win = new BrowserWindow({ width: 800, height: 600 })
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: false,
+            contextIsolation: true,
+            enableRemoteModule: false,
+            preload: path.join(__dirname, "preload.js")
+        }
+    })
 
-    win.loadURL(`file://${__dirname}/instructions.html`)
+    win.loadFile(path.join(__dirname, "instructions.html"));
 
     ipcMain.on('code', (event, arg) => {
         verifyCode(arg);
