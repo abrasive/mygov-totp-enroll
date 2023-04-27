@@ -2,6 +2,8 @@
 
 This tool lets you enroll a TOTP authenticator (eg. andOTP) to access myGov.
 
+If you have root access, you may want to read the TOTP token from the app data instead! You can find more details [here](https://gist.github.com/hacker1024/5d0845863e2dced27fd5eebc4ac95a39).
+
 You can't have more than one authenticator set up, so if you want multiple copies or backups, better do them all at once.
 
 It shouldn't be possible to fuck up your myGov account using this tool,
