@@ -26,23 +26,23 @@
 
         <script>
             document.getElementById("form").style.display = "none";
-
-            const { ipcRenderer } = require('electron');
-            ipcRenderer.on('status', (event, arg) => {
-              document.getElementById("status").innerHTML = arg;
+            
+            window.api.receive('status', (event, arg) => {
+                document.getElementById("status").innerHTML = arg;
             })
-            ipcRenderer.on('detail', (event, arg) => {
-              document.getElementById("detail").innerHTML = arg;
-            })
-
-            ipcRenderer.on('showform', (event, arg) => {
-              document.getElementById("form").style.display = arg;
+            window.api.receive('detail', (event, arg) => {
+                document.getElementById("detail").innerHTML = arg;
             })
 
-            document.getElementById("form").onsubmit = function() {
+            window.api.receive('showform', (event, arg) => {
+                document.getElementById("form").style.display = arg;
+            })
+
+            document.getElementById("form").onsubmit = function () {
                 code = document.getElementById("code").value;
-                ipcRenderer.send('code', code);
+                window.api.send('code', code);
             }
+
         </script>
     </body>
 </html>
